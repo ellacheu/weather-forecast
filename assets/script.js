@@ -1,6 +1,6 @@
 var form = $('#searchForm');
 var submitButton = $('.btn');
-
+// form click event to search for city
 form.on("submit", function(event) {
     event.preventDefault(); 
     console.log(event);
@@ -9,10 +9,7 @@ form.on("submit", function(event) {
 })
 
 var apiKey = "43c04c5c5205b5bc0cbf1dfb25c37cf3";
-
-// a weather dashboard with form inputs
-// search for a city
-
+// get api function to pull longitute and latitude location of searched city
 function getApi(city) {
     var queryUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + apiKey;
     fetch(queryUrl)
@@ -28,7 +25,7 @@ function getApi(city) {
     
 })
 }
-
+// function for 5 day forecast
 function getFiveDay(lat,lon) {
   var queryUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey + "&units=imperial";
   fetch(queryUrl)
@@ -40,28 +37,41 @@ function getFiveDay(lat,lon) {
   
 })
 }
-
+// function for current day weather 
 function getCurrent(lat,lon) {
   var queryUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey + "&units=imperial";
   fetch(queryUrl)
   .then(function (response) {
     return response.json();
   })
-  .then(function (data) {
-    console.log(data);
-  
-})
+  .then(data => {
+  let cityName = data.name;
+  let weatherIcon = data.weather['0'].icon;
+  let weatherIconUrl = 'https://openweathermap.org/img/wn/' + weatherIcon + '.png';
+  let temp = data.main.temp;
+  let humidity = data.main.humidity;
+  let windSpeed = data.wind.speed;  
+  city.innerHTML = 'Current Weather in ' + cityName;
+  icon.innerHTML = weatherIconUrl;
+  temperature.innerHTML = 'Temperature: ' + temp;
+  humidityEl.innerHTML = 'Humidity: ' + humidity;
+  wind.innerHTML = 'Wind Speed: ' + windSpeed;
+  console.log(data);
+ })
 }
 
+
+
+
 /*
-presented with current and future conditions for that city and that city is added to the search history
-view current weather conditions for that city
+date
+icon of weather condition
+temp
+humidity
+windspeed
 
-presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the the wind speed
-view future weather conditions for that city
-
-presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
 click on a city in the search history
-
 presented with current and future conditions for that city
+
+local storage, searched cities persist on the page
 */
