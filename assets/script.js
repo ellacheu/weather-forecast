@@ -47,12 +47,12 @@ function getCurrent(lat,lon) {
   .then(data => {
   let cityName = data.name;
   let weatherIcon = data.weather['0'].icon;
-  let weatherIconUrl = 'https://openweathermap.org/img/wn/' + weatherIcon + '.png';
+  let weatherIconUrl = 'https://openweathermap.org/img/wn/' + weatherIcon + '@2x.png';
   let temp = data.main.temp;
   let humidity = data.main.humidity;
   let windSpeed = data.wind.speed;  
   city.innerHTML = 'Current Weather in ' + cityName;
-  icon.innerHTML = weatherIconUrl;
+  icon.src = weatherIconUrl;
   temperature.innerHTML = 'Temperature: ' + temp;
   humidityEl.innerHTML = 'Humidity: ' + humidity;
   wind.innerHTML = 'Wind Speed: ' + windSpeed;
