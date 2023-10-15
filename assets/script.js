@@ -32,11 +32,52 @@ function getFiveDay(lat,lon) {
   .then(function (response) {
     return response.json();
   })
-  .then(function (data) {
-    console.log(data);
-  
+  .then(data => {
+    let forecastContainer = document.getElementById('forecast-container');
+    let forecastData = data.list;
+    console.log(forecastData);
+    for (let i = 0; i < forecastData.length; i++) {
+      let forecast= forecastData[i];
+
+    forecastData.forEach(forecast => { 
+    let day = data.list[i].dt_txt;
+    let name = data.city.name;
+    let weatherIcon = data[i].weather[i].icon;
+    let weatherIconUrl = 'https://openweathermap.org/img/wn/' + weatherIcon + '@2x.png';
+    let temp = data.list[i].main.temp;
+    let humidity = data.list[i].main.humidity;
+    let windSpeed = data.list[i].wind.speed;
+
+
+    let forecastCard = document.createElement('div');
+      forecastCard.classList.add('forecastCard');
+    let dateEl = document.createElement('h3');
+      dateEl.textContent = day;
+    let nameEl = document.createElement('p');
+      nameEl.textContent = name;
+    let iconEl = document.createElement('img');
+      iconEl.src = weatherIconUrl;
+    let tempEl = document.createElement('p');
+      tempEl.textContent = 'Temperature: ' + temp;
+    let humidityEl = document.createElement('p');
+      humidityEl.textContent = 'Humidity: ' + humidity;
+    let windEl = document.createElement('p');
+      windEl.textContent = 'Wind Speed: ' + windSpeed;
+
+    forecastCard.appendChild(dateEl);
+    forecastCard.appendChild(nameEl);
+    forecastCard.appendChild(iconEl);
+    forecastCard.appendChild(tempEl);
+    forecastCard.appendChild(humidityEl);
+    forecastCard.appendChild(windEl);
+
+    forecastContainer.appendChild(forecastCard);
+
+  })
+}
 })
 }
+
 // function for current day weather 
 function getCurrent(lat,lon) {
   var queryUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey + "&units=imperial";
@@ -51,8 +92,8 @@ function getCurrent(lat,lon) {
   let temp = data.main.temp;
   let humidity = data.main.humidity;
   let windSpeed = data.wind.speed;  
-  city.innerHTML = 'Current Weather in ' + cityName;
-  icon.src = weatherIconUrl;
+  city.innerHTML = cityName;
+  currentIcon.src = weatherIconUrl;
   temperature.innerHTML = 'Temperature: ' + temp;
   humidityEl.innerHTML = 'Humidity: ' + humidity;
   wind.innerHTML = 'Wind Speed: ' + windSpeed;
@@ -64,11 +105,6 @@ function getCurrent(lat,lon) {
 
 
 /*
-date
-icon of weather condition
-temp
-humidity
-windspeed
 
 click on a city in the search history
 presented with current and future conditions for that city
