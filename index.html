@@ -17,7 +17,7 @@
 
     <div class="containerTop">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" id="weatherTitle">
                 <h1>Weather Dashboard</h1>
             </div>
         </div>
@@ -25,25 +25,26 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col">
+            <div class="col md-6">
                 <!-- search bar -->
-                <div class="card">
+                <div class="card" id='searchCard'>
                     <div class="card-body">
                         <h5>Search for a city:</h5>
                         <form id="searchForm">
                         <input id="searchInput" type="text" placeholder="Enter city name">
                         <button class="btn searchButton" type="submit">Search</button>
                         </form>
+                        <div id="search-history">
+                            <h5>Search History:</h5>
+                            
+                        </div>
                     </div>
                 </div>
-            
-                <!-- list for search results -->
-                <ul class="list-group"></ul>
-
+            </div>
                 <!-- current weather card display -->
-                <div class="col">
+                <div class="col md-6">
                     <div class="currentCard">
-                        <h3>Current Weather</h3>
+                        <h4>Current Weather</h4>
                         <p id="city"></p>
                         <img id="currentIcon"></img>
                         <p id="temperature"></p>
@@ -52,21 +53,17 @@
                     </div>
                 </div>
             </div>
-            <!-- 5 day weather forecast display -->
-    <div id="forecast-container">
-            <div class="row">
-                <div class="col">
-                    <div class="wrapper">
-                            <h3>5-day Forecast</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                
-           
-        
+        </div>
 
-    
+
+            <!-- 5 day weather forecast display -->
+
+    <div id="forecast-container">
+            <div class="row" id="weatherCard">
+
+            </div>
+        </div>
+                
 </body>
 
 <!-- script links for js and jquery -->
