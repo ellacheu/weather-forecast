@@ -14,8 +14,8 @@ The motivation to create this application was to create a weather forecast searc
 [W3 Schools](https://www.w3schools.com/)
 
 ## Code Source
-[github](https://github.com/ellacheu/weather-forecast) <br>
-[live link](https://ellacheu.github.io/weather-forecast/)
+[GitHub](https://github.com/ellacheu/weather-forecast) <br>
+[Live Link](https://ellacheu.github.io/weather-forecast/)
 
 ## License
 MIT License
