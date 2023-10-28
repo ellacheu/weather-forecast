@@ -34,11 +34,9 @@ form.on("submit", function(event) {
   });
 
     updateSearchHistoryUI();
-    console.log(city)
   };
 };
 
-console.log(searchHistory)
  function updateSearchHistoryUI() {
   var searchHistoryList = document.getElementById('search-history');
   searchHistoryList.innerHTML = "";
@@ -70,7 +68,7 @@ function getApi(city) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+   
       var lat = data[0].lat;
       var lon = data[0].lon;
       getFiveDay(lat,lon);
@@ -90,11 +88,11 @@ function getFiveDay(lat,lon) {
       return response.json();
     })
     .then(data => {
-    console.log(data);
+ 
     let forecastContainer = document.getElementById('forecast-container');
    
     for (let i = 0; i < data.list.length; i+=8) {
-    console.log(data.list[i])
+  
    
     let day = data.list[i].dt_txt;
     let name = data.city.name;
