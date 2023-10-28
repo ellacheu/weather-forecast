@@ -10,7 +10,7 @@ form.on("submit", function(event) {
     getApi(city);
 
     handleSearch();
- })
+ });
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -35,8 +35,8 @@ form.on("submit", function(event) {
 
     updateSearchHistoryUI();
     console.log(city)
-  }
-}  
+  };
+};
 
 console.log(searchHistory)
  function updateSearchHistoryUI() {
@@ -52,8 +52,8 @@ console.log(searchHistory)
       
     });
     searchHistoryList.appendChild(cityButton);
-  }
- }
+  };
+ };
 
  updateSearchHistoryUI();
 
@@ -76,8 +76,8 @@ function getApi(city) {
       getFiveDay(lat,lon);
       getCurrent(lat,lon);
     
-})
-}
+});
+};
 
 
 ////////////////////////////////
@@ -132,7 +132,7 @@ function getFiveDay(lat,lon) {
     forecastContainer.appendChild(displayCard);
   
       }
-    })
+    });
   };
 
 //////////////////////////////////////
@@ -156,5 +156,5 @@ function getCurrent(lat,lon) {
     temperature.innerHTML = 'Temperature: ' + temp;
     humidityEl.innerHTML = 'Humidity: ' + humidity;
     wind.innerHTML = 'Wind Speed: ' + windSpeed;
-  })
+  });
 };
