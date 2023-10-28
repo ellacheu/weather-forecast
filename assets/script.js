@@ -1,7 +1,9 @@
 var form = $('#searchForm');
 var submitButton = $('.btn');
 
-// form click event to search for city
+////////////////////////////////////////
+// form click event to search for city//
+///////////////////////////////////////
 form.on("submit", function(event) {
     event.preventDefault(); 
     var city = event.target[0].value;
@@ -10,8 +12,10 @@ form.on("submit", function(event) {
     handleSearch();
  })
 
-// save to local storage and create functional displayed search list
 
+///////////////////////////////////////////////////////////////////////
+// save to local storage and create functional search history buttons//
+//////////////////////////////////////////////////////////////////////
  var searchHistory = JSON.parse(localStorage.getItem('savedCity')) || [];
 
  function handleSearch() {
@@ -20,7 +24,14 @@ form.on("submit", function(event) {
   if (!searchHistory.includes(city)) {
     searchHistory.push(city);
 
-    localStorage.setItem('savedInput', JSON.stringify(city));
+    localStorage.setItem('savedCity', JSON.stringify(searchHistory));
+
+  window.addEventListener('load', function() {
+    let searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+    searchHistory.forEach(function(city){
+      displaySavedCity(city);
+    });
+  });
 
     updateSearchHistoryUI();
     console.log(city)
@@ -47,7 +58,9 @@ console.log(searchHistory)
  updateSearchHistoryUI();
 
 
-// get api function to pull longitute and latitude location of searched city
+//////////////////////////////////////////////////////////////////////////////
+// get api function to pull longitute and latitude location of searched city//
+//////////////////////////////////////////////////////////////////////////////
 var apiKey = "43c04c5c5205b5bc0cbf1dfb25c37cf3";
 
 function getApi(city) {
@@ -67,7 +80,9 @@ function getApi(city) {
 }
 
 
-// function for 5 day forecast
+////////////////////////////////
+// function for 5 day forecast//
+////////////////////////////////
 function getFiveDay(lat,lon) {
     var queryUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey + "&units=imperial";
     fetch(queryUrl)
@@ -89,7 +104,6 @@ function getFiveDay(lat,lon) {
     let humidity = data.list[i].main.humidity;
     let windSpeed = data.list[i].wind.speed;
 
-    
 
     let forecastCard = document.createElement('div');
       forecastCard.classList.add('forecastCard');
@@ -121,8 +135,9 @@ function getFiveDay(lat,lon) {
     })
   };
 
-
-// function for current day weather 
+//////////////////////////////////////
+// function for current day weather //
+/////////////////////////////////////
 function getCurrent(lat,lon) {
   var queryUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey + "&units=imperial";
   fetch(queryUrl)
@@ -141,11 +156,5 @@ function getCurrent(lat,lon) {
     temperature.innerHTML = 'Temperature: ' + temp;
     humidityEl.innerHTML = 'Humidity: ' + humidity;
     wind.innerHTML = 'Wind Speed: ' + windSpeed;
-  
-
   })
 };
-  
-// not pushing into array in local storage
-// clear previous search 
-// data persist
