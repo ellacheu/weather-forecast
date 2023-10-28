@@ -10,11 +10,11 @@ The motivation to create this application was to create a weather forecast searc
 [OpenWeatherMap API](https://openweathermap.org/api)
 
 ## Credits
-[MDN Web Docs](https://developer.mozilla.org/en-US/)
+[MDN Web Docs](https://developer.mozilla.org/en-US/) <br>
 [W3 Schools](https://www.w3schools.com/)
 
 ## Code Source
-[github](https://github.com/ellacheu/weather-forecast)
+[github](https://github.com/ellacheu/weather-forecast) <br>
 [live link](https://ellacheu.github.io/weather-forecast/)
 
 ## License
